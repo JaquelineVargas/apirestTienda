@@ -1,0 +1,125 @@
+turorial de instalacion de android studio by,.:::: glcc
+
+
+                              ***INSTRUCCIONES***
+
+PASO  1
+
+//descargar el archivo comprimido desd la pagina oficial de android studio 
+que pesa alrededor de 1 GB. 
+
+PASO 2
+
+........MIENTRAS SE VA DESCARGANDO ANDROID STUDIO......  
+
+//instalacion de JDK
+
+sudo apt-get update
+ 
+sudo apt-get install default-jre
+
+
+//instalacion de ADB y FASTBOOT
+
+
+sudo apt-get install android-tools-adb adb android-tools-fastboot fastboot
+
+
+//librerias necesarias para android studio
+
+
+sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+
+
+PASO 3 
+
+...........UNA VEZ DESCARGADO EL ARCHIVO COMPRIMIDO DE ANDROID STUDIO PROCEDEMOS.........
+
+//Descomprimiendo Android Studio y copiandolo a la carpeta opt
+======================================================
+NOTA: Downloads ...  si tu ubuntu esta en ingles...... Descargas    si esta en catellano 
+=======================================================
+-- Si el archivo tiene extension .zip usa este comando=
+-------------------------------
+sudo unzip ~/Downloads/android-studio-ide-173.4720617-linux.zip -d /opt
+------------------------------
+--- Si el archivo tiene otra extencion .tar .gc utiliza este comando=
+----------------------------
+sudo tar -xvzf ~/Downloads/android-studio-ide-183.5452501-linux.tar.gz -C /opt
+------------------------------
+
+PASO 4
+
+.....//moviendonos a la carpeta de android studio.....
+
+cd /opt/android-studio/bin
+
+.....//ejecutando android studio.....
+
+./studio.sh
+
+PASO 5 
+
+una vez ejecutancoce android studio
+ proceder con siguiente siguiente  el cual tambien descargara el SDK (aproximadamente 1GB)
+ 
+   ********************---IMPORTANTE-----******************
+  al finalizar la descrga y la instalacion no cerrar android studio nos aparecera la ventanit de 
+     welcome to android studio  
+  en la parte inferior buscamos Configure y le dmos click  > si no te aparece agranda la venta 
+  dentro de este submenu le damos click en Create Desktop Entry
+  con esto ya tenemos instalado y ejecutandose Android Studio 
+
+
+
+
+links del inge ditmar 
+
+
+https://drive.google.com/file/d/1ANxrtGpmtywFTB9idzutMnsho17zn_Oa/view     -->  permisos
+
+https://drive.google.com/file/d/1AYThn846jq-Ypyavhqi1jNhcx8mrSy0N/view     --> adapterlist 28 mayo     
+
+https://drive.google.com/file/d/1zpbR5jow4TeLSb0uobLCLIbGuJ2cKdgY/view     --> docker  14 abril  
+
+
+https://drive.google.com/file/d/1kyGdK-O5Fvz4_T_yRW2GM80CC8QoGuUa/view     --> apirest 14 abril
+
+https://drive.google.com/file/d/1_qlT3Y5bLhAIqbicut7FRiVVxekyWML4/view     --> crud api 14 abril
+
+https://drive.google.com/file/d/14478Ozm4R6gErmyoC28NATM5P-WNzEs1/view     -->  regular exprecion 12 mayo 
+
+https://drive.google.com/file/d/1CgOUXDevgah3j2gWm_3Kkyhl1hIrH2JS/view     -- intents 16 mayo 
+
+https://drive.google.com/file/d/1AYThn846jq-Ypyavhqi1jNhcx8mrSy0N/view    --> adapterlist 28 may
+
+https://drive.google.com/open?id=1Qo_6IGyrLgyf8-lLnpEZuCqLgs0AcLy8         --> calculadora 
+
+https://drive.google.com/file/d/1Qo_6IGyrLgyf8-lLnpEZuCqLgs0AcLy8/view     -->>  restapi 14 de junio 
+
+
+
+https://docs.google.com/document/d/1402T9qSTe1Gc_Xbx2udFFXXYcDuNQRGprUkHedChIqA/edit    -->> proycto
+
+
+
+https://drive.google.com/file/d/1C8CWZHA9xyJyE5Z5Y5NuCndYx8q6gMa9/view    --->  login
+
+
+
+
+
+https://drive.google.com/file/d/14mHU4Aoo8cbxgb1-zWmSR79pEytMguZS/view  login 2018
+ 
+
+
+
+
+
+
+  
+
+
+
+
+

@@ -7,7 +7,6 @@ var userSchema = {
   address: String,
   password: String,
   email : String,
-  type :String,
   phone :String,
 //  registerdate : Date,
 };

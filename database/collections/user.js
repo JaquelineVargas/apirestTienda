@@ -4,11 +4,11 @@ const mongoose = require("../connect");
 var userSchema = {
   name : String,
   address: String,
-  password: String,
   email : String,
+  password: String,
   phone :String,
   type :String,
-//  registerdate : Date,
+  registerdate : Date
 };
 var user = mongoose.model("user", userSchema);
 module.exports = user;

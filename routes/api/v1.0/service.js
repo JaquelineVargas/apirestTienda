@@ -64,12 +64,12 @@ if(req.body.name ==""&& req.body.email == "" ){
 }
 var user = {
   name : req.body.name,
-  ci: req.body.ci,
   address: req.body.address,
-  password: req.body.password,
   email : req.body.email,
+  password: req.body.password,
   phone :req.body.phone,
-  //registerdate : req.body.registerDate,
+  type : req.body.type,
+registerdate: new Date()
 };
 var userData = new User(user);
 

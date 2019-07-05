@@ -5,33 +5,8 @@ var User = require("../../../database/collections/user");
 var jwt =require("jsonwebtoken");
 
 
-//loginprin
-/*router.post("/login",async(req,res,next) => {
-  var params =req.body;
-  if(!valid.checkParams({"email": String,"password":String},params)){
-    res.status(300).json({"msn":"Error parametros incorrectos"});
-    return;
-  }
-  var haspassword =sha1(params.password);
-  var docs =await USER.find({email:params.email,password: haspassword});
-  if (docs.length==0){
-    res.status(300).json({"msn":"Error usurio no registrado"});
-    return;
-  }
-  if (docs.length == 1){
-    jwt.sign({name: params.email,password: haspassword},"password",(err,token) => {
-      if (err){
-        res.status(300).json({"msn":"Error del jwt"});
-        return;
-      }
-      res.status(200).json({"token": token});
-    });
-    return;
-  }
-});*/
-
 //login
-router.post("/login", (req, res, next) => {
+router.post("/login", async(req, res,next) => {
   var email= req.body.email;
   var password = req.body.password;
   var result = User.findOne({email: email,password: password}).exec((err, doc) => {
@@ -51,7 +26,7 @@ router.post("/login", (req, res, next) => {
       })
     } else {
       res.status(200).json({
-        msn : "El usuario no existe ne la base de datos"
+        msn : "El usuario no existe en la base de datos"
       });
     }
   });
@@ -107,6 +82,8 @@ userData.save().then( () => {
 
 //Lectura de todos los usuarios
 router.get("/user",verifytoken, (req,res,next) => {
+  //linea de abajo requiere para validad token
+  console.log(req.token);
   User.find({}).exec((error,docs) => {
   res.status(200).json(docs);
  })

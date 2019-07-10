@@ -113,31 +113,17 @@ router.delete(/user\/[a-z0-9]{1,}$/,(req, res) => {
 });
 
 //PATH actualizar algunos campos de usuarios
-router.patch(/user\/[a-z0-9]{1,}$/,(req, res) => {
-  var url = req.url;
-  var id = url.split("/")[2];
-  var keys = Object.keys(req.body);
-  var user ={};
-  for (var i=0;i<keys.length;i++){
-    user[keys[i]]= req.body[keys[i]];
+router.patch("/user",(req, res) => {
+  if (req.query.id == null){
+    res.status(300).json({
+      msm:"error no existe id"
+    });
+    return;
   }
-  var user = {
-    name : req.body.name,
-    ci: req.body.ci,
-    address: req.body.address,
-    password: req.body.password,
-    email : req.body.email,
-    phone :req.body.phone
-    //registerdate : req.body.registerDate,
-  };
-User.findOneAndUpdate({_id: id},user,(error,params) => {
-    if(error){
-      res.status(500).json({
-        "msn": "error nose pudo actualizar los datos"
-      });
-      return;
-    }
-    res.status(200).json(params);
+  var id =req.query.id;
+  var user = req.body;
+  User.findOneAndUpdate({_id: id},user,(error,docs) => {
+    res.status(200).json(docs);
     return;
 });
 });
@@ -157,12 +143,12 @@ router.put(/user\/[a-z0-9]{1,}$/,(req, res) => {
   }
   var user = {
     name : req.body.name,
-    ci: req.body.ci,
     address: req.body.address,
-    password: req.body.password,
     email : req.body.email,
+    password: req.body.password,
     phone :req.body.phone,
-    //registerdate : req.body.registerDate,
+    type : req.body.type,
+  registerdate: new Date()
   };
 User.findOneAndUpdate({_id: id},user,(error,params) => {
     if(error){

@@ -4,9 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//declaration of routes
 var indexRouter = require('./routes/index');
 var serviceRouter = require('./routes/api/v1.0/service');
-
+var productoRouter = require('./routes/api/v1.0/producto');
 var app = express();
 
 // view engine setup
@@ -19,9 +20,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//using of routes
 app.use('/', indexRouter);
 app.use('/api/v1.0/', serviceRouter);
-
+app.use('/api/v1.0/', productoRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

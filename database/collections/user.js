@@ -8,6 +8,8 @@ var userSchema = {
   email : String,
   phone :String,
   type :String,
+  lat : String,
+  lon : String,
  registerdate : Date,
 };
 var user = mongoose.model("user", userSchema);

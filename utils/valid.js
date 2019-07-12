@@ -7,12 +7,12 @@ var valid = {
         return true;
     },
 
-    checkQuantity: function(quantity) {
+    /*checkQuantity: function(quantity) {
         var exp = /^[0-9]*$/g
         if (quantity.match(exp) == null) {
             return false;
         }
         return true;
-    },
+    },*/
 };
 module.exports = valid;

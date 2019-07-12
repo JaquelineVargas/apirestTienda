@@ -105,7 +105,7 @@ router.post("/uploadproduct", (req,res)=>{
       });
       return;
     }
-    
+
     if (docs != undefined) {
       upload(req, res, (err) => {
         if(err){
@@ -180,7 +180,20 @@ router.delete(/product\/[a-z0-9]{1,}$/,(req, res) => {
 });
 
 //actualizar producto
-
+router.patch("/product",(req, res) => {
+  if (req.query.id == null){
+    res.status(300).json({
+      msm:"error no existe id"
+    });
+    return;
+  }
+  var id =req.query.id;
+  var product = req.body;
+  Product.findOneAndUpdate({_id: id},product,(error,docs) => {
+    res.status(200).json(docs);
+    return;
+});
+});
 
 
 module.exports = router;

@@ -69,6 +69,8 @@ var user = {
   password: req.body.password,
   phone :req.body.phone,
   type : req.body.type,
+  log: req.body.log,
+  lat: req.body.lat,
 registerdate: new Date()
 };
 var userData = new User(user);
@@ -148,6 +150,8 @@ router.put(/user\/[a-z0-9]{1,}$/,(req, res) => {
     password: req.body.password,
     phone :req.body.phone,
     type : req.body.type,
+    log: req.body.log,
+    lat: req.body.lat,
   registerdate: new Date()
   };
 User.findOneAndUpdate({_id: id},user,(error,params) => {

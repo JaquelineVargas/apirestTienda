@@ -7,7 +7,7 @@ var logger = require('morgan');
 //declaration of routes
 var indexRouter = require('./routes/index');
 var serviceRouter = require('./routes/api/v1.0/service');
-var productoRouter = require('./routes/api/v1.0/producto');
+var productosRouter = require('./routes/api/v1.0/productos');
 var mensajeRouter = require('./routes/api/v1.0/mensaje');
 var imagenesRouter = require('./routes/api/v1.0/imagenes');
 var app = express();
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //using of routes
 app.use('/', indexRouter);
 app.use('/api/v1.0/', serviceRouter);
-app.use('/api/v1.0/', productoRouter);
+app.use('/api/v1.0/', productosRouter);
 app.use('/api/v1.0/', mensajeRouter);
 app.use('/api/v1.0/', imagenesRouter);
 // catch 404 and forward to error handler

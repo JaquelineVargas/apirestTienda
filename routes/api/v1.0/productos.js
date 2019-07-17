@@ -1,15 +1,12 @@
-// need router with app.js
 var express = require('express');
-var multer = require ('multer');
 var router = express.Router();
-var _ = require("underscore");
-var jwt =require("jsonwebtoken");
+const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const  Producto = require("../../../database/collections/product");
-const  Imagen = require("../../../database/collections/imagen");
-//USO DE MULTER SE ALMACENAN LAS IMAGENES EN IMAGES
+const Producto = require('../../../database/collections/producto');
+const Imagen = require('../../../database/collections/imagen');
+
 const storage = multer.diskStorage({
     destination: function (res, file, cb) {
         try {
@@ -64,13 +61,12 @@ router.post("/", (req, res) => {
 
             let datos = {
                 vendedor:fields.vendedor,
-                name:fields.name,
                 descripcion:fields.descripcion,
                 precio:fields.precio,
-                cantidad:fields.stock,
+                stock:fields.stock,
                 categoria:fields.categoria,
 
-                foto:'/api/v1.0/imagenes/' + result._id,
+                foto:'/api/V1.0/imagenes/' + result._id,
             }
 
             if (fields.stock == 0 && fields.estado == 'disponible') {
@@ -78,7 +74,7 @@ router.post("/", (req, res) => {
             }else{
                 datos.estado = fields.estado;
             }
-            const modelProducto = new producto(datos);
+            const modelProducto = new Producto(datos);
             return modelProducto.save()
           })
           .then(result => {
@@ -91,7 +87,7 @@ router.post("/", (req, res) => {
     });
   });
 /* listar Productos para el comprador */
-router.get('/p', function (req, res, next) {
+router.get('/', function (req, res, next) {
 
     let criterios = {};
 

@@ -135,7 +135,7 @@ router.put(/user\/[a-z0-9]{1,}$/,(req, res) => {
   var url = req.url;
   var id = url.split("/")[2];
   var keys = Object.keys(req.body);
-  var oficialkeys = ['name','ci','address','password','email','type','phone'];
+  var oficialkeys = ['name','address','email','password','phone','type','log','lat'];
   var result = _.difference(oficialkeys,keys);
   if (result.length > 0){
     res.status(400).json({

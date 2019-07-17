@@ -27,12 +27,12 @@ var ProductSchema = new Schema({
         enum:['disponible','no disponible','agotado'],
   },
   description: String,
-  image: String,
+  foto: String,
   registerdate : {
         type: Date,
         default: Date.now()
   },
-  iduser: {
+  vendedor: {
         type: Schema.Types.ObjectId,
         ref: "Usuario",
         require:'Falta info del vendedor'

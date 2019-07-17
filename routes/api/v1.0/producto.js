@@ -1,6 +1,7 @@
 // need router with app.js
 var express = require('express');
 var multer = require ('multer');
+var path = require ('path');
 var router = express.Router();
 var _ = require("underscore");
 var  Product = require("../../../database/collections/product");
@@ -10,15 +11,18 @@ var jwt =require("jsonwebtoken");
 var storage = multer.diskStorage({
   destination: "./public/images",
   filename: function (req, file, cb) {
-    console.log("-------------------------");
-    console.log(file);
     //nombres de imagenes guardado por fecha
-    cb(null, "IMG_" + Date.now() + ".jpg");
+    cb(null, "IMG_" + Date.now() + path.extname(file.originalname));
   }
 });
+var fileFilter = (req,file,cb)=>{
+
+}
 var upload = multer({
-  storage: storage
-}).single("img");;
+  storage: storage,
+  dest :path.join(),
+  fileFilter
+}).single("img");
 
 
 //CRUD DE IMAGENES

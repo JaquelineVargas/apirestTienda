@@ -2,16 +2,13 @@
 //SE ESTA ENLAZANDO CON FILE connect
 const mongoose = require('../connect');
 var Schema = mongoose.Schema;
-var ProductSchema = new Schema({
-  name: {
-      type: String,
-      required: [true, 'debe poner un nombre'],
-      match: /^[a-z]{3,16}$/,
-  },
-  precio: {
-        type: Number,
-        require:'Producto debe tener un precio'
-  },
+var productSchema = Schema({
+  user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
+  name: String,
+  description: String,
   categoria:{
       required:['no hay categoria'],
       type: String,
@@ -21,22 +18,21 @@ var ProductSchema = new Schema({
       type:Number,
       default:0,
   },
+  precio: {
+        type: Number,
+        require:'Producto debe tener un precio'
+  },
   estado:{
         type: String,
         default: 'agotado',
         enum:['disponible','no disponible','agotado'],
   },
-  description: String,
-  image: String,
   registerdate : {
         type: Date,
         default: Date.now()
   },
-  iduser: {
-        type: Schema.Types.ObjectId,
-        ref: "Usuario",
-        require:'Falta info del vendedor'
-    },
+  foto: String,
+
 });
-var product = mongoose.model("product", ProductSchema);
+var product = mongoose.model("Product", ProductSchema);
 module.exports = product;

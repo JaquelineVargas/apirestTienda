@@ -2,11 +2,7 @@
 //SE ESTA ENLAZANDO CON FILE connect
 const mongoose = require("../connect");
 var userSchema = {
-  name: {
-        type: String,
-        required: [true, 'debe poner un nombre'],
-        match: /^[a-z]{3,16}$/,
-  },
+  name: String,
   address: String,
   password: {
         type: String,
@@ -19,7 +15,7 @@ var userSchema = {
   },
   type: {
       type:String,
-      enum:['comprador', 'vendedor']
+      enum:['Comprador', 'Vendedor']
   },
   phone :String,
   lat : String,

@@ -9,30 +9,29 @@ var productSchema = Schema({
     },
   name: String,
   description: String,
-  categoria:{
+  category:{
       required:['no hay categoria'],
       type: String,
-      enum:['electrodomesticos','prendas','herramientas','muebles','vehiculos','varios'],
+
   },
   cantidad:{
       type:Number,
       default:0,
   },
-  precio: {
+  price: {
         type: Number,
         require:'Producto debe tener un precio'
   },
   estado:{
         type: String,
         default: 'agotado',
-        enum:['disponible','no disponible','agotado'],
   },
   registerdate : {
         type: Date,
         default: Date.now()
   },
-  foto: String,
+  image: String
 
 });
-var product = mongoose.model("Product", ProductSchema);
+var product = mongoose.model("Product", productSchema);
 module.exports = product;

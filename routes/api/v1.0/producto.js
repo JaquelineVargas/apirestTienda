@@ -15,19 +15,15 @@ var storage = multer.diskStorage({
     cb(null, "IMG_" + Date.now() + path.extname(file.originalname));
   }
 });
-var fileFilter = (req,file,cb)=>{
-
-}
 var upload = multer({
   storage: storage,
   dest :path.join(),
-  fileFilter
 }).single("img");
 
 
 //CRUD DE IMAGENES
 //SUBIR IMAGEN A UN PRODUCTO  POST
-router.post("/uploadproduct", (req,res)=>{
+router.post("/uploadproduct", (req,res) => {
   var params = req.query;
   var id =params.id;
   Product.findOne({_id: id}).exec((err,docs)=> {
@@ -37,7 +33,6 @@ router.post("/uploadproduct", (req,res)=>{
       });
       return;
     }
-
     if (docs != undefined) {
       upload(req, res, (err) => {
         if(err){
@@ -79,8 +74,7 @@ var product = {
   category: req.body.category,
   description: req.body.description,
   cantidad :req.body.cantidad ,
-  log:req.body.log,
-  lat:req.body.lat,
+  estado :req.body.cantidad ,
   registerDate: new Date(),
   //iduser :req.body.iduser,
 };

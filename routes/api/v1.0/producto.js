@@ -24,68 +24,57 @@ var upload = multer({
 //CRUD DE IMAGENES
 //SUBIR IMAGEN A UN PRODUCTO  POST
 router.post("/uploadproduct", (req,res) => {
-  var params = req.query;
-  var id =params.id;
-  Product.findOne({_id: id}).exec((err,docs)=> {
-    if(err){
-      res.status(501).json({
-        "msn" : "Problemas con la base de datos"
-      });
-      return;
-    }
-    if (docs != undefined) {
+
       upload(req, res, (err) => {
         if(err){
           res.status(500).json({
             "msn": "Error al subir la imagen"
           });
-          return;
+        }else{
+        if (req.file == undefined) {
+          return res.status(400).json({
+            "error" : 'No se recibio la imagen'
+          });
         }
-        var url = req.file.path.replace(/public/g, "");
-        //ASIGNAR IMAGEN EN ATRIBUTO IMAGE
-        Product.update({_id: id},{$set:{image:url}},(err, docs) => {
-          if (err){
-            res.status(200).json({
-              "msn": err
-            });
-            return;
-          }
-          res.status(200).json(docs);
-        });
+        let fields = req.body
+        var img = {
+          name : req.file.originalname,
+          idUsuario: fields.vendedor,
+          path : req.file.path,
+        };
+
+        var modelImagen = new Imagen(img);
+        modelImagen.save().then( (result) =>{
+          let datos = {
+                vendedor:fields.vendedor,
+                description:fields.description,
+                price:fields.price,
+                cantidad:fields.cantidad,
+                category:fields.category,
+
+                image:'/api/imagenes/' + result._id,
+            }
+            if (fields.cantidad == 0 && fields.estado == 'disponible') {
+                datos.estado = 'agotado';
+            }else{
+                datos.estado = fields.estado;
+            }
+            const modelProducto = new Producto(datos);
+            return modelProducto.save()
+          })
+          .then(result => {
+           res.status(201).json({message: 'Se Agrego el producto',result});
+           })
+          .catch(err => {
+          res.status(500).json({error:err.message})
+         });
+        }
       });
-    }
   });
-});
 
 
 
-//CRUD PRODUCTO
-//creacion de producto
-router.post("/product",(req,res) => {
-//validacion
-if(req.body.name ==""&& req.body.email == "" ){
-  res.status(400).json({"msn" : "formato incorrecto"});
-  return;
-}
-var product = {
-  name: req.body.name,
-  image: "",
-  price: req.body.price,
-  category: req.body.category,
-  description: req.body.description,
-  cantidad :req.body.cantidad ,
-  estado :req.body.cantidad ,
-  registerDate: new Date(),
-  //iduser :req.body.iduser,
-};
-var productData = new Product(product);
 
-productData.save().then( () => {
-  res.status(200).json({
-    "msn" : "producto Registrado con exito"
-  });
-});
-});
 
 //Lectura de todos los productos
 router.get("/product"/*,verifytoken*/, (req,res,next) => {

@@ -3,7 +3,7 @@
 const mongoose = require('../connect');
 var Schema = mongoose.Schema;
 var productSchema = Schema({
-  user: {
+  vendedor: {
         type: Schema.Types.ObjectId,
         ref: "User",
     },
